@@ -13,13 +13,14 @@ switch ($_POST["action"]) {
     $authController = new Auth();
     $res = $authController->login($_POST["email"], $_POST["password"]);
     if ($res->code != 2) {
-      header('Location: ' . 'index.php', true);
+      // print_r($res);
+      header('Location: ' . 'login', true);
       return 'error';
     }
 
     $_SESSION["api_token"] = $res->data->token;
 
-    header('Location: home');
+    header('Location: products');
     exit();
 
     break;

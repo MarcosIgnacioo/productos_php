@@ -6,3 +6,7 @@ if (!isset($_SESSION)) {
 if (!defined('BASE_PATH')) {
   define('BASE_PATH', 'http://localhost/products_php/');
 }
+
+if (!isset($_SESSION['global_token'])) {
+  $_SESSION['global_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
