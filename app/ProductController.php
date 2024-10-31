@@ -19,7 +19,7 @@ switch ($_POST["action"]) {
   case 'update_product':
     $productController = new ProductController();
     $res = $productController->updateProduct($_POST);
-    header('Location: home');
+    header('Location: products');
     exit();
     break;
   case 'delete_product':
@@ -132,7 +132,7 @@ class ProductController
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'PUT',
-      CURLOPT_POSTFIELDS => 'name=' . $product['name'] . '&slug=' . $product['slug'] . '&id=' . $product['id'] . '&description=' . $product['description'] . '&features=' . $product['features'] . '&categories[0]=' . $product['categories'][0] . '&tags[0]=' . $product['tags'][0],
+      CURLOPT_POSTFIELDS => 'name=' . $product['name'] . '&slug=' . $product['slug'] . '&id=' . $product['id'] . '&description=' . $product['description'] . '&features=' . $product['features'] . '&categories[0]=' . $product['category_id'],
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/x-www-form-urlencoded',
         'Authorization: Bearer ' . $_SESSION['api_token'],
@@ -167,7 +167,8 @@ class ProductController
     curl_close($curl);
     return $response;
   }
-  function dummy() {
+  function dummy()
+  {
     return 'hola desde productroocntorller';
   }
 }

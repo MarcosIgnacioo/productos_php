@@ -38,6 +38,7 @@
           </div>
           <div class="d-grid">
             <button class="btn btn-danger" onclick="deleteProduct(this)" data-id=<?= $product->id ?> data-product=<?= json_encode($product) ?>>Delete</button>
+            <a class="btn btn-warning" href="<?=BASE_PATH?>products/edit/<?=$product->slug?>">Edit</a>
           </div>
         </div>
       </div>
