@@ -1,12 +1,13 @@
 <?php
 session_start();
-if (
-  !$_POST || !$_POST["action"] || !$_POST["global_token"]
-  || ($_SESSION["global_token"] != $_POST['global_token'])
-) {
-  echo 'There is no action';
-  return;
-}
+
+// if (
+//   !$_POST || !$_POST["action"] || !$_POST["global_token"]
+//   || ($_SESSION["global_token"] != $_POST['global_token'])
+// ) {
+//   echo 'There is no action';
+//   return;
+// }
 
 switch ($_POST["action"]) {
   case 'add_product':
@@ -58,6 +59,9 @@ class ProductController
 
   function getProductBySlug($slug)
   {
+    if (!isset($_SESSION['api_token'])) {
+      return 'no hay api ytoken';
+    }
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -162,5 +166,8 @@ class ProductController
     $response = curl_exec($curl);
     curl_close($curl);
     return $response;
+  }
+  function dummy() {
+    return 'hola desde productroocntorller';
   }
 }

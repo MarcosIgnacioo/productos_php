@@ -1,7 +1,7 @@
 <div class="col-sm-6 col-xl-4">
   <div class="card product-card">
     <div class="card-img-top">
-      <a href="<?= BASE_PATH . $product->slug ?>">
+      <a href="<?= BASE_PATH . 'products/' . $product->slug ?>">
         <img src=<?= $product->cover ?> style="max-height: 150px;" alt="not image found" class="img-prod img-fluid" />
       </a>
       <div class="card-body position-absolute end-0 top-0">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="card-body">
-      <a href="<?= BASE_PATH . $product->slug ?>">
+      <a href="<?= BASE_PATH . 'products/' . $product->slug ?>">
         <p class="prod-content mb-0 text-muted"><?= $product->name ?></p>
       </a>
       <div class="d-flex align-items-center justify-content-between mt-2 mb-3 flex-wrap gap-1">
@@ -25,7 +25,7 @@
       <div class="d-flex">
         <div class="flex-shrink-0">
           <a
-            href="<?= BASE_PATH . $product->slug ?>"
+            href="<?= BASE_PATH . 'products/' . $product->slug ?>"
             class="avtar avtar-s btn-link-secondary btn-prod-card"
             data-bs-toggle="offcanvas"
             data-bs-target="#productOffcanvas">
