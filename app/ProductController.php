@@ -19,7 +19,7 @@ switch ($_POST["action"]) {
   case 'update_product':
     $productController = new ProductController();
     $res = $productController->updateProduct($_POST);
-    header('Location: products');
+    header('Location: ../');
     exit();
     break;
   case 'delete_product':
