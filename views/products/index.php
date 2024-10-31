@@ -167,13 +167,74 @@ $brands = $brandController->get();
 
   ?>
 
-
   <!-- [Page Specific JS] start -->
   <script>
     // scroll-block
     var tc = document.querySelectorAll('.scroll-block');
     for (var t = 0; t < tc.length; t++) {
       new SimpleBar(tc[t]);
+    }
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
+  <script>
+    function deleteProduct(obj) {
+      const id = obj.dataset.id;
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+          const body = new URLSearchParams({
+            action: 'delete_product',
+            id: id,
+          });
+
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: body.toString(),
+            redirect: "follow"
+          };
+          fetch(`http://localhost/products_php/api-products`, requestOptions)
+            .then(response => response.text())
+            .then(res => console.log(res))
+            .catch(error => console.log('error', error));
+
+          swalWithBootstrapButtons.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          location.reload();
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error"
+          });
+        }
+      });
     }
   </script>
 

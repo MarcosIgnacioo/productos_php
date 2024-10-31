@@ -93,7 +93,10 @@ $product = $productController->getProductBySlug($slug);
                   </div>
                   <h5 class="mt-4 mb-sm-3 mb-2 f-w-500">About this item</h5>
                   <ul>
-                  <li class="mb-2"><?=$product->description?></li>
+                  <li class="mb-2">
+<?= $product->features ?>
+</li>
+                          
                   </ul>
 
                   <h3 class="mb-4">$<?= $product->presentations[0]->price[0]->amount ?></h3>
@@ -147,7 +150,7 @@ $product = $productController->getProductBySlug($slug);
                     <table class="table table-borderless mb-0">
                       <tbody>
                         <tr>
-                          <?= $product->features ?>
+<?=$product->description?>
                         </tr>
                       </tbody>
                     </table>

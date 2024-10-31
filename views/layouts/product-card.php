@@ -36,6 +36,9 @@
           <div class="d-grid">
             <button class="btn btn-link-secondary btn-prod-card">Add to cart</button>
           </div>
+          <div class="d-grid">
+            <button class="btn btn-danger" onclick="deleteProduct(this)" data-id=<?= $product->id ?> data-product=<?= json_encode($product) ?>>Delete</button>
+          </div>
         </div>
       </div>
     </div>
